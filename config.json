@@ -1,0 +1,15 @@
+{
+    "name": "Maker:Bit",
+    "description": "Mục mở rộng dành cho bộ kit Maker:Bit",
+    "libs": [
+    ],
+    "blocks": [
+        "definition.js"
+    ],
+    "toolbox": "toolbox.xml",
+    "languages": {
+        "en": "languages/en.js",
+        "vi": "languages/vi.js"
+    },
+    "poster": "poster.png"
+}

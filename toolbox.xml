@@ -1,0 +1,98 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="MAKER:BIT" colour="#52D6F4" icon="puzzle-piece">
+    <block type="makerbit_ir_on_receive"/>
+    <block type="makerbit_ir_remote_btn"/>
+    <block type="makerbit_ir_recv" />
+    <block type="makerbit_ir_clear" />
+    
+    <!-- <block type="makerbit_move_motor">
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block> -->
+    <block type="makerbit_move_stop"/>
+    <block type="makerbit_move_servo">
+      <value name="angle">
+        <shadow type="math_number">
+          <field name="NUM">90</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="makerbit_move_servo_rotate">
+      <value name="change">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="limit">
+        <shadow type="math_number">
+          <field name="NUM">180</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="makerbit_move_servo270">
+      <value name="angle">
+        <shadow type="math_number">
+          <field name="NUM">135</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="makerbit_move_servo270_rotate">
+      <value name="change">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="limit">
+        <shadow type="math_number">
+          <field name="NUM">270</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="makerbit_move_servo360">
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="makerbit_move_servo_read_position" />
+
+    <block type="makerbit_ultrasonic_create"/>
+    <block type="makerbit_ultrasonic_read"/>
+    <block type="makerbit_ultrasonic_checkdistance">
+      <value name="DISTANCE">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+
+    <!-- <block type="makerbit_line_sensor_read" />
+    <block type="makerbit_line_sensor_check">
+      <value name="num">
+        <shadow type="math_number">
+          <field name="NUM">2000</field>
+        </shadow>
+      </value>
+    </block> -->
+
+    <block type="makerbit_input_color_sensor_read" />
+    <block type="makerbit_input_color_sensor_detect" />
+<!-- 
+    <block type="makerbit_endstop"/> -->
+
+  </category>
+</xml>
