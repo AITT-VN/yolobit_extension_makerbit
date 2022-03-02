@@ -5,13 +5,13 @@
     <block type="makerbit_ir_recv" />
     <block type="makerbit_ir_clear" />
     
-    <!-- <block type="makerbit_move_motor">
+    <block type="makerbit_move_motor">
       <value name="speed">
         <shadow type="math_number">
           <field name="NUM">50</field>
         </shadow>
       </value>
-    </block> -->
+    </block>
     <block type="makerbit_move_stop"/>
     <block type="makerbit_move_servo">
       <value name="angle">
@@ -80,19 +80,12 @@
       </value>
     </block>
 
-    <!-- <block type="makerbit_line_sensor_read" />
-    <block type="makerbit_line_sensor_check">
-      <value name="num">
-        <shadow type="math_number">
-          <field name="NUM">2000</field>
-        </shadow>
-      </value>
-    </block> -->
+    <block type="makerbit_line_finder_read" />
 
     <block type="makerbit_input_color_sensor_read" />
     <block type="makerbit_input_color_sensor_detect" />
-<!-- 
-    <block type="makerbit_endstop"/> -->
+
+    <block type="makerbit_endstop"/>
 
   </category>
 </xml>

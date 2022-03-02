@@ -1,76 +1,96 @@
 const ColorBlock = '#52D6F4';
 
-// Blockly.Blocks['makerbit_move_motor'] = {
-//   init: function() {
-//     this.jsonInit(
-//     {
-//         "type": "block_move_motor",
-//         "message0": "%3 quay động cơ trái tốc độ %1 động cơ phải %2 (-100 đến 100)",
-//         "args0": [
-//           {
-//             "type": "input_value",
-//             "name": "left_wheel_speed",
-//             "check": "Number",
-//         },
-//         {
-//             "type": "input_value",
-//             "name": "right_wheel_speed",
-//             "check": "Number",
-//         },
-//         {
-//             "type": "field_image",
-//             "src": "images/2479548.svg",
-//             "width": 20,
-//             "height": 20,
-//             "alt": "*",
-//             "flipRtl": false
-//         }
-//         ],
-//         "inputsInline": true,
-//         "previousStatement": null,
-//         "nextStatement": null,
-//         "colour": ColorBlock,
-//         "tooltip": "",
-//         "helpUrl": ""
-//     }
-//     );
-//   }
-//   };
-
-// Blockly.Python["makerbit_move_motor"] = function (block) {
-//   var motor = block.getFieldValue("motor");
-//   var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
-//   // TODO: Assemble Python into code variable.
-//   var code = "motor.speed(" + motor + ", " + speed + ")\n";
-//   return code;
-// };
-
-Blockly.Blocks['makerbit_move_stop'] = {
+Blockly.Blocks['makerbit_move_motor'] = {
   init: function() {
     this.jsonInit(
-    {
-        "type": "makerbit_move_stop",
-        "message0": "%1 dừng di chuyển",
+      {
+        "type": "makerbit_move_motor",
+        "message0": "%1 di chuyển %2 với tốc độ %3 (0-100)",
         "args0": [
-            {
+          {
             "type": "field_image",
-            "src": "images/827428.svg",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_robotshield/images/motor_block.svg",
             "width": 20,
             "height": 20,
-            "alt": "*",
+            "alt": "",
             "flipRtl": false
-            }],
+          },
+          {
+            "type": "field_dropdown",
+            "name": "motor",
+            "options": [
+              [
+                "M1",
+                "0"
+              ],
+              [
+                "M2",
+                "1"
+              ],
+              [
+                "M3",
+                "2"
+              ],
+              [
+                "M4",
+                "3"
+              ]
+            ]
+          },
+          {
+            min: 0,
+            type: "input_value",
+            check: "Number",
+            value: 50,
+            name: "speed",
+          }
+        ],
         "inputsInline": true,
         "previousStatement": null,
         "nextStatement": null,
         "colour": ColorBlock,
         "tooltip": "",
         "helpUrl": ""
-        
-    }
+      }
     );
   }
-  };
+};
+
+Blockly.Python["makerbit_move_motor"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
+  var motor = block.getFieldValue("motor");
+  var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = "motor.speed(" + motor + ", " + speed + ")\n";
+  return code;
+};
+
+Blockly.Blocks['makerbit_move_stop'] = {
+  init: function () {
+    this.jsonInit(
+      {
+        "type": "makerbit_move_stop",
+        "message0": "%1 dừng di chuyển",
+        "args0": [
+          {
+            "type": "field_image",
+            "src": "images/827428.svg",
+            "width": 20,
+            "height": 20,
+            "alt": "*",
+            "flipRtl": false
+          }],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": ColorBlock,
+        "tooltip": "",
+        "helpUrl": ""
+
+      }
+    );
+  }
+};
 
 Blockly.Python["makerbit_move_stop"] = function (block) {
   // TODO: Assemble Python into code variable.
@@ -79,13 +99,13 @@ Blockly.Python["makerbit_move_stop"] = function (block) {
 };
 
 Blockly.Blocks['makerbit_move_servo'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_move_servo",
         "message0": "%3 servo %1 xoay góc %2 (0-180)",
         "args0": [
-          
+
           {
             "type": "field_dropdown",
             "name": "servo",
@@ -168,7 +188,7 @@ Blockly.Python["makerbit_move_servo_rotate"] = function (block) {
 };
 
 Blockly.Blocks['makerbit_move_servo_rotate'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_move_servo_rotate",
@@ -249,13 +269,13 @@ Blockly.Blocks['makerbit_move_servo_rotate'] = {
 
 
 Blockly.Blocks['makerbit_move_servo270'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_move_servo270",
         "message0": "%3 servo (270°) %1 xoay góc %2 (0-270)",
         "args0": [
-          
+
           {
             "type": "field_dropdown",
             "name": "servo",
@@ -328,7 +348,7 @@ Blockly.Python["makerbit_move_servo270"] = function (block) {
 };
 
 Blockly.Blocks['makerbit_move_servo270_rotate'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_move_servo270_rotate",
@@ -418,7 +438,7 @@ Blockly.Python["makerbit_move_servo270_rotate"] = function (block) {
 };
 
 Blockly.Blocks['makerbit_move_servo360'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_move_servo360",
@@ -475,7 +495,7 @@ Blockly.Blocks['makerbit_move_servo360'] = {
             "name": "speed",
             "check": "Number"
           },
-          
+
         ],
         "inputsInline": true,
         "previousStatement": null,
@@ -570,7 +590,7 @@ Blockly.Blocks['makerbit_ultrasonic_create'] = {
    * Block for waiting.
    * @this Blockly.Block
    */
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_ultrasonic_create",
@@ -689,7 +709,7 @@ Blockly.Blocks['makerbit_ultrasonic_create'] = {
               [
                 "P5",
                 "pin5"
-              ],              
+              ],
               [
                 "P7",
                 "pin7"
@@ -709,7 +729,7 @@ Blockly.Blocks['makerbit_ultrasonic_create'] = {
               [
                 "P11",
                 "pin11"
-              ],              
+              ],
               [
                 "P12",
                 "pin12"
@@ -749,12 +769,12 @@ Blockly.Blocks['makerbit_ultrasonic_create'] = {
       }
     );
   },
-  getDeveloperVars: function() {
+  getDeveloperVars: function () {
     return ['ultrasonic_makerbit'];
   }
 };
 
-Blockly.Python['makerbit_ultrasonic_create'] = function(block) {
+Blockly.Python['makerbit_ultrasonic_create'] = function (block) {
   var dropdown_trg = block.getFieldValue('TRG');
   var dropdown_ech = block.getFieldValue('ECH');
   // TODO: Assemble Python into code variable.
@@ -765,7 +785,7 @@ Blockly.Python['makerbit_ultrasonic_create'] = function(block) {
 };
 
 Blockly.Blocks['makerbit_ultrasonic_read'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_ultrasonic_read",
@@ -793,12 +813,12 @@ Blockly.Blocks['makerbit_ultrasonic_read'] = {
       }
     );
   },
-  getDeveloperVars: function() {
+  getDeveloperVars: function () {
     return ['ultrasonic_makerbit'];
   }
 };
 
-Blockly.Python['makerbit_ultrasonic_read'] = function(block) {
+Blockly.Python['makerbit_ultrasonic_read'] = function (block) {
   var dropdown_type = block.getFieldValue('TYPE');
   // TODO: Assemble Python into code variable.
   var code = '';
@@ -812,7 +832,7 @@ Blockly.Python['makerbit_ultrasonic_read'] = function(block) {
 };
 
 Blockly.Blocks['makerbit_ultrasonic_checkdistance'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "makerbit_ultrasonic_checkdistance",
@@ -848,12 +868,12 @@ Blockly.Blocks['makerbit_ultrasonic_checkdistance'] = {
       }
     );
   },
-  getDeveloperVars: function() {
+  getDeveloperVars: function () {
     return ['ultrasonic_makerbit'];
   }
 };
 
-Blockly.Python['makerbit_ultrasonic_checkdistance'] = function(block) {
+Blockly.Python['makerbit_ultrasonic_checkdistance'] = function (block) {
   var value_distance = Blockly.Python.valueToCode(block, 'DISTANCE', Blockly.Python.ORDER_ATOMIC);
   var dropdown_type = block.getFieldValue('TYPE');
   // TODO: Assemble Python into code variable.
@@ -879,9 +899,9 @@ Blockly.Blocks["makerbit_input_color_sensor_read"] = {
           type: "field_dropdown",
           name: "RGB",
           options: [
-            ["RED","r"],
-            ["GREEN","g"],
-            ["BLUE","b"],
+            ["RED", "r"],
+            ["GREEN", "g"],
+            ["BLUE", "b"],
           ],
         },
         {
@@ -910,9 +930,9 @@ Blockly.Blocks["makerbit_input_color_sensor_detect"] = {
           type: "field_dropdown",
           name: "color",
           options: [
-            ["trắng","w"],
-            ["đen","d"],
-            ["đỏ","r"],
+            ["trắng", "w"],
+            ["đen", "d"],
+            ["đỏ", "r"],
             ["xanh lá (green)", "g"],
             ["xanh dương (blue)", "b"],
             ["vàng", "y"]
@@ -937,7 +957,7 @@ Blockly.Python["makerbit_input_color_sensor_read"] = function (block) {
   var RGB = block.getFieldValue("RGB");
   // TODO: Assemble Python into code variable.
   Blockly.Python.definitions_['import_color_sensor'] = "from makerbit_tcs34725 import color_sensor";
-  var code = "color_sensor.read('" + RGB +"')";
+  var code = "color_sensor.read('" + RGB + "')";
   return [code, Blockly.Python.ORDER_NONE];
 };
 
@@ -945,120 +965,121 @@ Blockly.Python["makerbit_input_color_sensor_detect"] = function (block) {
   var color = block.getFieldValue("color");
   // TODO: Assemble Python into code variable.
   Blockly.Python.definitions_['import_color_sensor'] = "from makerbit_tcs34725 import color_sensor";
-  var code = "color_sensor.detect('" + color +"')";
+  var code = "color_sensor.detect('" + color + "')";
   return [code, Blockly.Python.ORDER_NONE];
 };
 
 // Công tắc hành trình
 
-// Blockly.Blocks['makerbit_endstop'] = {
-//   init: function() {
-//     this.jsonInit(
-//       {
-//         "type": "makerbit_endstop",
-//         "message0": "công tắc hành trình bị đóng",
-//         "args0": [
-//           {
-//             "type": "field_dropdown",
-//             "name": "NAME",
-//             "options": [
-//               [
-//                 "P1",
-//                 "pin1"
-//               ],
-//               [
-//                 "P0",
-//                 "pin0"
-//               ],              
-//               [
-//                 "P2",
-//                 "pin2"
-//               ],
-//               [
-//                 "P3",
-//                 "pin3"
-//               ],
-//               [
-//                 "P4",
-//                 "pin4"
-//               ],
-//               [
-//                 "P5",
-//                 "pin5"
-//               ],
-//               [
-//                 "P6",
-//                 "pin6"
-//               ],
-//               [
-//                 "P7",
-//                 "pin7"
-//               ],
-//               [
-//                 "P8",
-//                 "pin8"
-//               ],
-//               [
-//                 "P9",
-//                 "pin9"
-//               ],
-//               [
-//                 "P10",
-//                 "pin10"
-//               ],
-//               [
-//                 "P11",
-//                 "pin11"
-//               ],
-//               [
-//                 "P12",
-//                 "pin12"
-//               ],
-//               [
-//                 "P13",
-//                 "pin13"
-//               ],
-//               [
-//                 "P14",
-//                 "pin14"
-//               ],
-//               [
-//                 "P15",
-//                 "pin15"
-//               ],
-//               [
-//                 "P16",
-//                 "pin16"
-//               ],
-//               [
-//                 "P19",
-//                 "pin19"
-//               ],
-//               [
-//                 "P20",
-//                 "pin20"
-//               ]
-//             ]
-//           }
-//         ],
-//         "output": null,
-//         "colour": ColorBlock,
-//         "tooltip": "Trả về giá trị (0) hoặc (1) của ccông tắc hành trình",
-//         "helpUrl": ""
-//       }
-//     );
-//   }
-// };
+Blockly.Blocks['makerbit_endstop'] = {
+  init: function () {
+    this.jsonInit(
+      {
+        "type": "makerbit_endstop",
+        "message0": "Kiểm tra trạng thái của công tắc hành trình chân %1",
+        "args0": [
+          {
+            "type": "field_dropdown",
+            "name": "NAME",
+            "options": [
+              [
+                "P1",
+                "pin1"
+              ],
+              [
+                "P0",
+                "pin0"
+              ],
+              [
+                "P2",
+                "pin2"
+              ],
+              [
+                "P3",
+                "pin3"
+              ],
+              [
+                "P4",
+                "pin4"
+              ],
+              [
+                "P5",
+                "pin5"
+              ],
+              [
+                "P6",
+                "pin6"
+              ],
+              [
+                "P7",
+                "pin7"
+              ],
+              [
+                "P8",
+                "pin8"
+              ],
+              [
+                "P9",
+                "pin9"
+              ],
+              [
+                "P10",
+                "pin10"
+              ],
+              [
+                "P11",
+                "pin11"
+              ],
+              [
+                "P12",
+                "pin12"
+              ],
+              [
+                "P13",
+                "pin13"
+              ],
+              [
+                "P14",
+                "pin14"
+              ],
+              [
+                "P15",
+                "pin15"
+              ],
+              [
+                "P16",
+                "pin16"
+              ],
+              [
+                "P19",
+                "pin19"
+              ],
+              [
+                "P20",
+                "pin20"
+              ]
+            ]
+          }
+        ],
+        "output": null,
+        "colour": ColorBlock,
+        "tooltip": "Trả về giá trị (0) hoặc (1) của ccông tắc hành trình",
+        "helpUrl": ""
+      }
+    );
+  }
+};
 
-// Blockly.Python['makerbit_endstop'] = function(block) {
-//   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
-//   var dropdown_name = block.getFieldValue('NAME');
-//   // TODO: Assemble Python into code variable.
-//   var code = dropdown_name + '.read_digital() == 0';
-//   // TODO: Change ORDER_NONE to the correct strength.
-//   return [code, Blockly.Python.ORDER_NONE];
-// };
+Blockly.Python['makerbit_endstop'] = function (block) {
+  Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+  var dropdown_name = block.getFieldValue('NAME');
+  // TODO: Assemble Python into code variable.
+  var code = dropdown_name + '.read_digital() == 0';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
+};
 
+// IR reciever
 
 Blockly.Blocks["makerbit_ir_recv"] = {
   init: function () {
@@ -1139,11 +1160,17 @@ Blockly.Blocks["makerbit_ir_recv"] = {
       helpUrl: "",
     });
   },
-  getDeveloperVars: function() {
+  getDeveloperVars: function () {
     return ['ir_rx'];
   }
 };
 
+Blockly.Python["makerbit_ir_recv"] = function (block) {
+  var remote = block.getFieldValue("remote");
+  // TODO: Assemble Python into code variable.
+  var code = 'ir_rx.get_code() == IR_REMOTE_' + remote;
+  return [code, Blockly.Python.ORDER_NONE];
+};
 
 Blockly.Blocks["makerbit_ir_clear"] = {
   init: function () {
@@ -1166,9 +1193,15 @@ Blockly.Blocks["makerbit_ir_clear"] = {
       helpUrl: "",
     });
   },
-  getDeveloperVars: function() {
+  getDeveloperVars: function () {
     return ['ir_rx'];
   }
+};
+
+Blockly.Python["makerbit_ir_clear"] = function (block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'ir_rx.clear_code()\n';
+  return code;
 };
 
 Blockly.Blocks["makerbit_ir_on_receive"] = {
@@ -1201,9 +1234,38 @@ Blockly.Blocks["makerbit_ir_on_receive"] = {
       helpUrl: "",
     });
   },
-  getDeveloperVars: function() {
+  getDeveloperVars: function () {
     return ['ir_rx'];
   }
+};
+
+Blockly.Python['makerbit_ir_on_receive'] = function (block) {
+  var variable_message = Blockly.Python.variableDB_.getName(block.getFieldValue('message'), Blockly.Variables.NAME_TYPE);
+  var statements_action = Blockly.Python.statementToCode(block, 'ACTION');
+
+  var globals = [];
+  var varName;
+  var workspace = block.workspace;
+  var variables = workspace.getAllVariables() || [];
+  for (var i = 0, variable; variable = variables[i]; i++) {
+    varName = variable.name;
+    if (variable_message != Blockly.Python.variableDB_.getName(varName, Blockly.Variables.NAME_TYPE))
+      globals.push(Blockly.Python.variableDB_.getName(varName,
+        Blockly.Variables.NAME_TYPE));
+  }
+  globals = globals.length ? Blockly.Python.INDENT + 'global ' + globals.join(', ') : '';
+
+  var cbFunctionName = Blockly.Python.provideFunction_(
+    'on_ir_receive_callback',
+    ['def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(' + variable_message + ', addr, ext):',
+      globals,
+    statements_action || Blockly.Python.PASS
+    ]);
+
+  var code = 'ir_rx.on_received(' + cbFunctionName + ')\n';
+  Blockly.Python.definitions_['on_ir_receive_callback' + '_statement'] = code;
+
+  return '';
 };
 
 Blockly.Blocks["makerbit_ir_remote_btn"] = {
@@ -1279,22 +1341,6 @@ Blockly.Blocks["makerbit_ir_remote_btn"] = {
   }
 };
 
-
-// PYTHON
-
-Blockly.Python["makerbit_ir_recv"] = function (block) {
-  var remote = block.getFieldValue("remote");
-  // TODO: Assemble Python into code variable.
-  var code = 'ir_rx.get_code() == IR_REMOTE_' + remote;
-  return [code, Blockly.Python.ORDER_NONE];
-};
-
-Blockly.Python["makerbit_ir_clear"] = function (block) {
-  // TODO: Assemble Python into code variable.
-  var code = 'ir_rx.clear_code()\n';
-  return code;
-};
-
 Blockly.Python["makerbit_ir_remote_btn"] = function (block) {
   var remote = block.getFieldValue("remote");
   // TODO: Assemble Python into code variable.
@@ -1302,154 +1348,200 @@ Blockly.Python["makerbit_ir_remote_btn"] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-Blockly.Python['makerbit_ir_on_receive'] = function(block) {
-  var variable_message = Blockly.Python.variableDB_.getName(block.getFieldValue('message'), Blockly.Variables.NAME_TYPE);
-  var statements_action = Blockly.Python.statementToCode(block, 'ACTION');
+// Line Finder
 
-  var globals = [];
-  var varName;
-  var workspace = block.workspace;
-  var variables = workspace.getAllVariables() || [];
-  for (var i = 0, variable; variable = variables[i]; i++) {
-    varName = variable.name;
-    if (variable_message != Blockly.Python.variableDB_.getName(varName, Blockly.Variables.NAME_TYPE))
-      globals.push(Blockly.Python.variableDB_.getName(varName,
-        Blockly.Variables.NAME_TYPE));
-  }
-  globals = globals.length ? Blockly.Python.INDENT + 'global ' + globals.join(', ') : '';
-
-  var cbFunctionName = Blockly.Python.provideFunction_(
-    'on_ir_receive_callback',
-    ['def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(' + variable_message + ', addr, ext):',
-      globals,
-      statements_action || Blockly.Python.PASS
-    ]);
-  
-  var code = 'ir_rx.on_received(' + cbFunctionName + ')\n';
-  Blockly.Python.definitions_['on_ir_receive_callback' + '_statement'] = code;
-
-  return '';
-};
-
-Blockly.Blocks['carbit_check_line_sensor'] = {
-  init: function() {
+Blockly.Blocks['makerbit_line_finder_read'] = {
+  /**
+   * Block for waiting.
+   * @this Blockly.Block
+   */
+  init: function () {
     this.jsonInit(
       {
-        "type": "carbit_check_line_sensor",
-        "message0": Blockly.Msg.CARBIT_CHECK_LINE_SENSOR_MESSAGE0,
+        "type": "makerbit_line_finder_read",
+        "message0": "đọc cảm biến dò vạch đen chân S1 %1 chân S2 %2 ",
         "args0": [
           {
             "type": "field_dropdown",
-            "name": "NAME1",
+            "name": "S1",
             "options": [
               [
-                Blockly.Msg.CARBIT_CHECK_LINE_SENSOR_MESSAGE1,
+                "P0",
                 "pin0"
               ],
               [
-                Blockly.Msg.CARBIT_CHECK_LINE_SENSOR_MESSAGE2,
+                "P1",
                 "pin1"
+              ],
+              [
+                "P2",
+                "pin2"
+              ],
+              [
+                "P3",
+                "pin3"
+              ],
+              [
+                "P4",
+                "pin4"
+              ],
+              [
+                "P5",
+                "pin5"
+              ],
+              [
+                "P6",
+                "pin6"
+              ],
+              [
+                "P7",
+                "pin7"
+              ],
+              [
+                "P8",
+                "pin8"
+              ],
+              [
+                "P9",
+                "pin9"
+              ],
+              [
+                "P10",
+                "pin10"
+              ],
+              [
+                "P11",
+                "pin11"
+              ],
+              [
+                "P12",
+                "pin12"
+              ],
+              [
+                "P13",
+                "pin13"
+              ],
+              [
+                "P14",
+                "pin14"
+              ],
+              [
+                "P15",
+                "pin15"
+              ],
+              [
+                "P16",
+                "pin16"
+              ],
+              [
+                "P19",
+                "pin19"
+              ],
+              [
+                "P20",
+                "pin20"
               ]
             ]
           },
           {
             "type": "field_dropdown",
-            "name": "NAME",
+            "name": "S2",
             "options": [
               [
-                ">",
-                ">"
-              ],
-              [
-                "<",
-                "<"
-              ]
-            ]
-          },
-          {
-            "type": "input_value",
-            "name": "num"
-          }
-        ],
-        "inputsInline": true,
-        "output": null,
-        "colour": "#cb2026",
-        "tooltip": Blockly.Msg.CARBIT_CHECK_LINE_SENSOR_TOOLTIP,
-        "helpUrl": Blockly.Msg.CARBIT_CHECK_LINE_SENSOR_HELPURL
-      }
-    );
-  }
-};
-
-Blockly.Python['carbit_check_line_sensor'] = function(block) {
-  Blockly.Python.definitions_['import_car'] = 'from carbit import *';
-  var dropdown_name1 = block.getFieldValue('NAME1');
-  var dropdown_name = block.getFieldValue('NAME');
-  var value_name = Blockly.Python.valueToCode(block, 'num', Blockly.Python.ORDER_ATOMIC);
-  var code = dropdown_name1+'.read_analog()'+dropdown_name+value_name;
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.Python.ORDER_NONE];
-};
-
-Blockly.Blocks['carbit_line_sensor_read_analog'] = {
-  init: function() {
-    this.jsonInit(
-      {
-        "type": "block_type",
-        "message0": Blockly.Msg.CARBIT_LINE_SENSOR_READ_ANALOG_MESSAGE0,
-        "args0": [
-          {
-            "type": "field_dropdown",
-            "name": "NAME1",
-            "options": [
-              [
-                Blockly.Msg.CARBIT_LINE_SENSOR_READ_ANALOG_MESSAGE1,
+                "P0",
                 "pin0"
               ],
               [
-                Blockly.Msg.CARBIT_LINE_SENSOR_READ_ANALOG_MESSAGE2,
+                "P1",
                 "pin1"
+              ],
+              [
+                "P2",
+                "pin2"
+              ],
+              [
+                "P3",
+                "pin3"
+              ],
+              [
+                "P4",
+                "pin4"
+              ],
+              [
+                "P5",
+                "pin5"
+              ],
+              [
+                "P6",
+                "pin6"
+              ],
+              [
+                "P7",
+                "pin7"
+              ],
+              [
+                "P8",
+                "pin8"
+              ],
+              [
+                "P9",
+                "pin9"
+              ],
+              [
+                "P10",
+                "pin10"
+              ],
+              [
+                "P11",
+                "pin11"
+              ],
+              [
+                "P12",
+                "pin12"
+              ],
+              [
+                "P13",
+                "pin13"
+              ],
+              [
+                "P14",
+                "pin14"
+              ],
+              [
+                "P15",
+                "pin15"
+              ],
+              [
+                "P16",
+                "pin16"
+              ],
+              [
+                "P19",
+                "pin19"
+              ],
+              [
+                "P20",
+                "pin20"
               ]
             ]
           }
         ],
-        "output": null,
-        "colour": "#cb2026",
-        "tooltip": Blockly.Msg.CARBIT_LINE_SENSOR_READ_ANALOG_TOOLTIP,
-        "helpUrl": Blockly.Msg.CARBIT_LINE_SENSOR_READ_ANALOG_HELPURL
-
+        output: "Boolean",
+        "colour": ColorBlock,
+        "tooltip": "",
+        "helpUrl": ""
       }
     );
   }
 };
 
-Blockly.Python['carbit_line_sensor_read_analog'] = function(block) {
-  Blockly.Python.definitions_['import_car'] = 'from carbit import *';
-  var dropdown_name1 = block.getFieldValue('NAME1');
-  var code = dropdown_name1+ '.read_analog()';
-  // TODO: Change ORDER_NONE to the correct strength.
+Blockly.Python['makerbit_line_finder_read'] = function (block) {
+  var SIG1 = block.getFieldValue('S1');
+  var SIG2 = block.getFieldValue('S2');
+  Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+  Blockly.Python.definitions_['import_linefinder'] = 'from makerbit_linefinder import line_finder';
+  Blockly.Python.definitions_["import_create_linefinder"] = 'line_finder = LineFinder(sig_1=' + SIG1 + '.pin, sig_2=' + SIG2 + '.pin)';
+  // TODO: Assemble Python into code variable.
+  var code = 'line_finder.read()';
   return [code, Blockly.Python.ORDER_NONE];
 };
-
-Blockly.Blocks['carbit_ledRGB'] = {
-  init: function() {
-    this.jsonInit(
-      {
-        "type": "carbit_ledRGB",
-        "message0": Blockly.Msg.CARBIT_LEDRGB_MESSAGE0,
-        "args0": [
-          {
-            "type": "field_colour",
-            "name": "color",
-            "colour": "#33ccff"
-          }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": "#cb2026",
-        "tooltip": Blockly.Msg.CARBIT_LEDRGB_TOOLTIP,
-        "helpUrl": Blockly.Msg.CARBIT_LEDRGB_HELPURL
-      }
-    );
-  }
-}; 
