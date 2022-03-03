@@ -1,4 +1,4 @@
-from setting import *
+import machine
 from machine import Pin
 
 S1_IN_S2_OUT = const(0)

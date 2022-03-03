@@ -1550,7 +1550,7 @@ Blockly.Python['makerbit_line_finder_read'] = function (block) {
   var SIG1 = block.getFieldValue('S1');
   var SIG2 = block.getFieldValue('S2');
   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
-  Blockly.Python.definitions_['import_linefinder'] = 'from makerbit_linefinder import line_finder';
+  Blockly.Python.definitions_['import_linefinder'] = 'from makerbit_linefinder import *';
   Blockly.Python.definitions_["import_create_linefinder"] = 'line_finder = LineFinder(sig_1=' + SIG1 + '.pin, sig_2=' + SIG2 + '.pin)';
   // TODO: Assemble Python into code variable.
   var code = 'line_finder.read()';
