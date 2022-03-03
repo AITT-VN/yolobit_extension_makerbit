@@ -93,6 +93,7 @@ Blockly.Blocks['makerbit_move_stop'] = {
 };
 
 Blockly.Python["makerbit_move_stop"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   // TODO: Assemble Python into code variable.
   var code = "motor.move(0, 0)\n";
   return code;
@@ -172,12 +173,14 @@ Blockly.Blocks['makerbit_move_servo'] = {
 Blockly.Python["makerbit_move_servo"] = function (block) {
   var servo = block.getFieldValue("servo");
   var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   // TODO: Assemble Python into code variable.
   var code = "servo.position(" + servo + ", " + angle + ")\n";
   return code;
 };
 
 Blockly.Python["makerbit_move_servo_rotate"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var servo = block.getFieldValue("servo");
   var change = Blockly.Python.valueToCode(block, 'change', Blockly.Python.ORDER_ATOMIC);
   var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
@@ -340,6 +343,7 @@ Blockly.Blocks['makerbit_move_servo270'] = {
 };
 
 Blockly.Python["makerbit_move_servo270"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var servo = block.getFieldValue("servo");
   var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
@@ -428,6 +432,7 @@ Blockly.Blocks['makerbit_move_servo270_rotate'] = {
 };
 
 Blockly.Python["makerbit_move_servo270_rotate"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var servo = block.getFieldValue("servo");
   var change = Blockly.Python.valueToCode(block, 'change', Blockly.Python.ORDER_ATOMIC);
   var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
@@ -509,6 +514,7 @@ Blockly.Blocks['makerbit_move_servo360'] = {
 };
 
 Blockly.Python["makerbit_move_servo360"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var servo = block.getFieldValue("servo");
   var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
@@ -577,6 +583,7 @@ Blockly.Blocks["makerbit_move_servo_read_position"] = {
 };
 
 Blockly.Python["makerbit_move_servo_read_position"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var servo = block.getFieldValue("servo");
   // TODO: Assemble Python into code variable.
   var code = "servo.position(" + servo + ")";
@@ -1166,6 +1173,7 @@ Blockly.Blocks["makerbit_ir_recv"] = {
 };
 
 Blockly.Python["makerbit_ir_recv"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var remote = block.getFieldValue("remote");
   // TODO: Assemble Python into code variable.
   var code = 'ir_rx.get_code() == IR_REMOTE_' + remote;
@@ -1199,6 +1207,7 @@ Blockly.Blocks["makerbit_ir_clear"] = {
 };
 
 Blockly.Python["makerbit_ir_clear"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   // TODO: Assemble Python into code variable.
   var code = 'ir_rx.clear_code()\n';
   return code;
@@ -1240,6 +1249,7 @@ Blockly.Blocks["makerbit_ir_on_receive"] = {
 };
 
 Blockly.Python['makerbit_ir_on_receive'] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var variable_message = Blockly.Python.variableDB_.getName(block.getFieldValue('message'), Blockly.Variables.NAME_TYPE);
   var statements_action = Blockly.Python.statementToCode(block, 'ACTION');
 
@@ -1342,6 +1352,7 @@ Blockly.Blocks["makerbit_ir_remote_btn"] = {
 };
 
 Blockly.Python["makerbit_ir_remote_btn"] = function (block) {
+  Blockly.Python.definitions_['import_makerbit'] = 'from makerbit import *';
   var remote = block.getFieldValue("remote");
   // TODO: Assemble Python into code variable.
   var code = 'IR_REMOTE_' + remote;

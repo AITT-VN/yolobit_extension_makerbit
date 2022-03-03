@@ -231,6 +231,10 @@ class Servos:
     if degrees < 0 or degrees > max_degrees:
       return
 
+    # Lego servo 270 not working with 0 degree
+    if degrees <= 1 and max_degrees == 270:
+      degrees = 1
+
     span = self.max_duty - self.min_duty
     duty = self.min_duty + span * degrees / max_degrees
     duty = min(self.max_duty, max(self.min_duty, int(duty)))
