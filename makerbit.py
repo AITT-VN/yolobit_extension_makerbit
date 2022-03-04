@@ -171,7 +171,10 @@ class DCMotors:
         self.__turn_backward(True, speed, t)
 
     def stop(self):
-        self.set_wheel_speed(0, 0)
+        self.speed(0, 0)
+        self.speed(1, 0)
+        self.speed(2, 0)
+        self.speed(3, 0)
         
     def stepper(self, index, sense_of_rotation):  # index:1~2,sense_of_rotation:0~1
       if index == 0:
@@ -232,8 +235,8 @@ class Servos:
       return
 
     # Lego servo 270 not working with 0 degree
-    if degrees <= 1 and max_degrees == 270:
-      degrees = 1
+    if degrees < 2 and max_degrees == 270:
+      degrees = 2
 
     span = self.max_duty - self.min_duty
     duty = self.min_duty + span * degrees / max_degrees

@@ -4,7 +4,11 @@
     <block type="makerbit_ir_remote_btn"/>
     <block type="makerbit_ir_recv" />
     <block type="makerbit_ir_clear" />
-    
+
+    <block type="makerbit_input_mpu_get_accel" />
+    <block type="makerbit_input_mpu_get_gyro" />
+    <block type="makerbit_input_mpu_is_shake" />
+
     <block type="makerbit_move_motor">
       <value name="speed">
         <shadow type="math_number">
@@ -80,7 +84,7 @@
       </value>
     </block>
 
-    <block type="makerbit_line_finder_read" />
+    <block type="makerbit_linesensor_read" />
 
     <block type="makerbit_input_color_sensor_read" />
     <block type="makerbit_input_color_sensor_detect" />

@@ -190,7 +190,7 @@ class TCS34725:
         r, g, b = self.html_rgb()
         return "{0:02x}{1:02x}{2:02x}".format(int(r),int(g),int(b))
 
-class ColorSensor:
+class ColorSensor():
     
     def __init__(self, address = 0x29):
         self.address = address
@@ -199,7 +199,7 @@ class ColorSensor:
         try:
             self.tcs = TCS34725(machine.SoftI2C(scl=scl_pin, sda=sda_pin), self.address)
         except:
-            say('Color sensor not found')
+            print('Color sensor not found')
             raise Exception('Color sensor not found')
 
     def read(self, color):

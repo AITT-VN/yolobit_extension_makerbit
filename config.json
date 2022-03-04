@@ -4,8 +4,9 @@
     "libs": [
         "makerbit.py",
         "makerbit_ir_receiver.py",
+        "makerbit_motion.py",
         "makerbit_linefinder.py",
-        "makerbit_hcrs04.py",
+        "makerbit_hcsr04.py",
         "makerbit_tcs34725.py",
         "pca9685.py"
     ],

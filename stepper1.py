@@ -66,5 +66,3 @@ except Exception as e:
     
 pca9685_obj = pca9685.PCA9685(__i2c, 0x40)
 stepper = Stepper(pca9685_obj)
-
-

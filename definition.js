@@ -1,5 +1,7 @@
 const ColorBlock = '#52D6F4';
 
+// DC Motor
+
 Blockly.Blocks['makerbit_move_motor'] = {
   init: function() {
     this.jsonInit(
@@ -9,7 +11,7 @@ Blockly.Blocks['makerbit_move_motor'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_robotshield/images/motor_block.svg",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/motor_block.svg",
             "width": 20,
             "height": 20,
             "alt": "",
@@ -74,7 +76,7 @@ Blockly.Blocks['makerbit_move_stop'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "images/827428.svg",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/827428.svg",
             "width": 20,
             "height": 20,
             "alt": "*",
@@ -98,6 +100,8 @@ Blockly.Python["makerbit_move_stop"] = function (block) {
   var code = "motor.move(0, 0)\n";
   return code;
 };
+
+// Servo
 
 Blockly.Blocks['makerbit_move_servo'] = {
   init: function () {
@@ -152,7 +156,7 @@ Blockly.Blocks['makerbit_move_servo'] = {
           },
           {
             "type": "field_image",
-            "src": "static/blocks/block_images/icon.webp",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/servo_block.webp",
             "width": 20,
             "height": 20,
             "alt": "*",
@@ -199,7 +203,7 @@ Blockly.Blocks['makerbit_move_servo_rotate'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "images/icon.webp",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/servo_block.webp",
             "width": 20,
             "height": 20,
             "alt": "*",
@@ -270,7 +274,6 @@ Blockly.Blocks['makerbit_move_servo_rotate'] = {
   }
 };
 
-
 Blockly.Blocks['makerbit_move_servo270'] = {
   init: function () {
     this.jsonInit(
@@ -324,7 +327,7 @@ Blockly.Blocks['makerbit_move_servo270'] = {
           },
           {
             "type": "field_image",
-            "src": "static/blocks/block_images/icon.webp",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/servo_block.webp",
             "width": 20,
             "height": 20,
             "alt": "*",
@@ -347,7 +350,7 @@ Blockly.Python["makerbit_move_servo270"] = function (block) {
   var servo = block.getFieldValue("servo");
   var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = "servo.position(" + servo + ", " + angle + ", max_degree=270)\n";
+  var code = "servo.position(" + servo + ", " + angle + ", max_degrees=270)\n";
   return code;
 };
 
@@ -360,7 +363,7 @@ Blockly.Blocks['makerbit_move_servo270_rotate'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "static/blocks/block_images/icon.webp",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/servo_block.webp",
             "width": 20,
             "height": 20,
             "alt": "*",
@@ -438,7 +441,7 @@ Blockly.Python["makerbit_move_servo270_rotate"] = function (block) {
   var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
   var limit = Blockly.Python.valueToCode(block, 'limit', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = "servo.rotate(" + servo + ", " + change + ", " + speed + ", " + limit + ", max_degree=270)\n";
+  var code = "servo.rotate(" + servo + ", " + change + ", " + speed + ", " + limit + ", max_degrees=270)\n";
   return code;
 };
 
@@ -451,7 +454,7 @@ Blockly.Blocks['makerbit_move_servo360'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "static/blocks/block_images/icon.webp",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/servo_block.webp",
             "width": 20,
             "height": 20,
             "alt": "*",
@@ -531,7 +534,7 @@ Blockly.Blocks["makerbit_move_servo_read_position"] = {
       args0: [
         {
           "type": "field_image",
-          "src": "static/blocks/block_images/icon.webp",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/servo_block.webp",
           "width": 20,
           "height": 20,
           "alt": "*",
@@ -590,7 +593,7 @@ Blockly.Python["makerbit_move_servo_read_position"] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-// Cảm biến siêu âm
+// Ultrasonic
 
 Blockly.Blocks['makerbit_ultrasonic_create'] = {
   /**
@@ -601,7 +604,7 @@ Blockly.Blocks['makerbit_ultrasonic_create'] = {
     this.jsonInit(
       {
         "type": "makerbit_ultrasonic_create",
-        "message0": Blockly.Msg.MAKERBIT_ULTRASONIC_CREATE_MESSAGE0,
+        "message0": "%3 khởi tạo cảm biến khoảng cách với chân trigger %1 chân echo %2",
         "args0": [
           {
             "type": "field_dropdown",
@@ -766,13 +769,21 @@ Blockly.Blocks['makerbit_ultrasonic_create'] = {
                 "pin20"
               ]
             ]
+          },
+          {
+            "type": "field_image",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/ultrasonic.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*",
+            "flipRtl": false
           }
         ],
         "previousStatement": null,
         "nextStatement": null,
         "colour": ColorBlock,
-        "tooltip": Blockly.Msg.MAKERBIT_ULTRASONIC_CREATE_TOOLTIP,
-        "helpUrl": Blockly.Msg.MAKERBIT_ULTRASONIC_CREATE_HELPURL
+        "tooltip": "Khởi tạo cảm biến khoảng cách với 2 chân cắm Trigger và Echo được chọn",
+        "helpUrl": ""
       }
     );
   },
@@ -796,7 +807,7 @@ Blockly.Blocks['makerbit_ultrasonic_read'] = {
     this.jsonInit(
       {
         "type": "makerbit_ultrasonic_read",
-        "message0": Blockly.Msg.MAKERBIT_ULTRASONIC_READ_MESSAGE0,
+        "message0": "%2 đọc cảm biến khoảng cách theo %1",
         "args0": [
           {
             "type": "field_dropdown",
@@ -811,12 +822,20 @@ Blockly.Blocks['makerbit_ultrasonic_read'] = {
                 "MM"
               ]
             ]
+          },
+          {
+            "type": "field_image",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/ultrasonic.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*",
+            "flipRtl": false
           }
         ],
         "output": null,
         "colour": ColorBlock,
-        "tooltip": Blockly.Msg.MAKERBIT_ULTRASONIC_READ_TOOLTIP,
-        "helpUrl": Blockly.Msg.MAKERBIT_ULTRASONIC_READ_HELPURL
+        "tooltip": "Đọc giá trị đo được của cảm biến khoảng cách",
+        "helpUrl": ""
       }
     );
   },
@@ -843,7 +862,7 @@ Blockly.Blocks['makerbit_ultrasonic_checkdistance'] = {
     this.jsonInit(
       {
         "type": "makerbit_ultrasonic_checkdistance",
-        "message0": Blockly.Msg.MAKERBIT_ULTRASONIC_CHECK_MESSAGE0,
+        "message0": "%4 cảm biến khoảng cách đọc được < %1 %2 %3",
         "args0": [
           {
             "type": "input_dummy"
@@ -866,12 +885,20 @@ Blockly.Blocks['makerbit_ultrasonic_checkdistance'] = {
                 "MM"
               ]
             ]
+          },
+          {
+            "type": "field_image",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/ultrasonic.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*",
+            "flipRtl": false
           }
         ],
         "output": "Boolean",
         "colour": ColorBlock,
-        "tooltip": Blockly.Msg.MAKERBIT_ULTRASONIC_CHECK_TOOLTIP,
-        "helpUrl": Blockly.Msg.MAKERBIT_ULTRASONIC_CHECK_HELPURL
+        "tooltip": "Kiểm tra xem khoảng cách đo được của cảm biến có lớn hơn giá trị được chọn hay không",
+        "helpUrl": ""
       }
     );
   },
@@ -893,7 +920,7 @@ Blockly.Python['makerbit_ultrasonic_checkdistance'] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-// Cảm biến màu sắc
+// Color Sensor
 
 Blockly.Blocks["makerbit_input_color_sensor_read"] = {
   init: function () {
@@ -913,7 +940,7 @@ Blockly.Blocks["makerbit_input_color_sensor_read"] = {
         },
         {
           "type": "field_image",
-          "src": "https://i.ibb.co/tsXx1MH/rgb.png",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/rgb.png",
           "width": 20,
           "height": 20,
           "alt": "*",
@@ -947,7 +974,7 @@ Blockly.Blocks["makerbit_input_color_sensor_detect"] = {
         },
         {
           "type": "field_image",
-          "src": "https://i.ibb.co/tsXx1MH/rgb.png",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/rgb.png",
           "width": 20,
           "height": 20,
           "alt": "*",
@@ -976,15 +1003,23 @@ Blockly.Python["makerbit_input_color_sensor_detect"] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-// Công tắc hành trình
+// Endstop
 
 Blockly.Blocks['makerbit_endstop'] = {
   init: function () {
     this.jsonInit(
       {
         "type": "makerbit_endstop",
-        "message0": "Kiểm tra trạng thái của công tắc hành trình chân %1",
+        "message0": "%1 trạng thái của công tắc hành trình chân %2",
         "args0": [
+          {
+            "type": "field_image",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/limit_switch.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*",
+            "flipRtl": false
+          },
           {
             "type": "field_dropdown",
             "name": "NAME",
@@ -1097,7 +1132,7 @@ Blockly.Blocks["makerbit_ir_recv"] = {
       args0: [
         {
           "type": "field_image",
-          "src": "https://i.ibb.co/dtYR9mJ/remote.png",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/remote.png",
           "width": 20,
           "height": 20,
           "alt": "*",
@@ -1115,7 +1150,7 @@ Blockly.Blocks["makerbit_ir_recv"] = {
             ["F", "F"],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/forward.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/forward.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1124,7 +1159,7 @@ Blockly.Blocks["makerbit_ir_recv"] = {
             ],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/backward.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/backward.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1133,7 +1168,7 @@ Blockly.Blocks["makerbit_ir_recv"] = {
             ],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/turn_left.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/turn_left.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1142,7 +1177,7 @@ Blockly.Blocks["makerbit_ir_recv"] = {
             ],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/turn_right.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/turn_right.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1189,7 +1224,7 @@ Blockly.Blocks["makerbit_ir_clear"] = {
       args0: [
         {
           "type": "field_image",
-          "src": "https://i.ibb.co/dtYR9mJ/remote.png",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/remote.png",
           "width": 20,
           "height": 20,
           "alt": "*",
@@ -1221,7 +1256,7 @@ Blockly.Blocks["makerbit_ir_on_receive"] = {
       args0: [
         {
           "type": "field_image",
-          "src": "https://i.ibb.co/dtYR9mJ/remote.png",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/remote.png",
           "width": 20,
           "height": 20,
           "alt": "*",
@@ -1297,7 +1332,7 @@ Blockly.Blocks["makerbit_ir_remote_btn"] = {
             ["F", "F"],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/forward.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/forward.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1306,7 +1341,7 @@ Blockly.Blocks["makerbit_ir_remote_btn"] = {
             ],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/backward.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/backward.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1315,7 +1350,7 @@ Blockly.Blocks["makerbit_ir_remote_btn"] = {
             ],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/turn_left.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/turn_left.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1324,7 +1359,7 @@ Blockly.Blocks["makerbit_ir_remote_btn"] = {
             ],
             [
               {
-                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_homebit_v3/images/turn_right.svg",
+                "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/turn_right.svg",
                 "width": 15,
                 "height": 15,
                 "alt": "*"
@@ -1361,17 +1396,21 @@ Blockly.Python["makerbit_ir_remote_btn"] = function (block) {
 
 // Line Finder
 
-Blockly.Blocks['makerbit_line_finder_read'] = {
-  /**
-   * Block for waiting.
-   * @this Blockly.Block
-   */
-  init: function () {
+Blockly.Blocks['makerbit_linesensor_read'] = {
+  init: function() {
     this.jsonInit(
       {
-        "type": "makerbit_line_finder_read",
-        "message0": "đọc cảm biến dò vạch đen chân S1 %1 chân S2 %2 ",
+        "type": "bot_input_linesensor_read",
+        "message0": "%1 cảm biến dò vạch đen chân S1 %2 chân S2 %3 phát hiện %4",
         "args0": [
+          {
+            "type": "field_image",
+            "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/line_finder.svg",
+            "width": 15,
+            "height": 15,
+            "alt": "*",
+            "flipRtl": false
+          },
           {
             "type": "field_dropdown",
             "name": "S1",
@@ -1535,10 +1574,52 @@ Blockly.Blocks['makerbit_line_finder_read'] = {
                 "pin20"
               ]
             ]
+          },
+          {
+            "type": "field_dropdown",
+            "name": "status",
+            "options": [
+              [
+                {
+                  "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/line_finder_left.png",
+                  "width": 15,
+                  "height": 15,
+                  "alt": "trái"
+                },
+                "0"
+              ],
+              [
+                {
+                  "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/line_finder_right.png",
+                  "width": 15,
+                  "height": 15,
+                  "alt": "phải"
+                },
+                "1"
+              ],
+              [
+                {
+                  "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/line_finder_none.png",
+                  "width": 15,
+                  "height": 15,
+                  "alt": "không bên nào"
+                },
+                "2"
+              ],
+              [
+                {
+                  "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/line_finder_both.png",
+                  "width": 15,
+                  "height": 15,
+                  "alt": "cả 2 bên"
+                },
+                "3"
+              ]
+            ]
           }
         ],
-        output: "Boolean",
         "colour": ColorBlock,
+        "output": "Boolean",
         "tooltip": "",
         "helpUrl": ""
       }
@@ -1546,13 +1627,124 @@ Blockly.Blocks['makerbit_line_finder_read'] = {
   }
 };
 
-Blockly.Python['makerbit_line_finder_read'] = function (block) {
+Blockly.Python["makerbit_linesensor_read"] = function (block) {
   var SIG1 = block.getFieldValue('S1');
   var SIG2 = block.getFieldValue('S2');
+  var status = block.getFieldValue("status");
   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
   Blockly.Python.definitions_['import_linefinder'] = 'from makerbit_linefinder import *';
   Blockly.Python.definitions_["import_create_linefinder"] = 'line_finder = LineFinder(sig_1=' + SIG1 + '.pin, sig_2=' + SIG2 + '.pin)';
   // TODO: Assemble Python into code variable.
-  var code = 'line_finder.read()';
+  var code = "line_finder.read() == " + status;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+// MPU6050
+
+Blockly.Blocks["makerbit_input_mpu_get_accel"] = {
+  init: function () {
+    this.jsonInit({
+      colour: ColorBlock,
+      tooltip: "",
+      message0: "%2 đọc cảm biến gia tốc %1",
+      args0: [
+        {
+          type: "field_dropdown",
+          name: "accel",
+          options: [
+            ["x", "x"],
+            ["y", "y"],
+            ["z", "z"],
+          ],
+        },
+        {
+          "type": "field_image",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/xyz-axis.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*",
+          "flipRtl": false
+        }
+      ],
+      output: "Number",
+      helpUrl: ""
+    });
+  },
+};
+
+Blockly.Python["makerbit_input_mpu_get_accel"] = function (block) {
+  var accel = block.getFieldValue("accel");
+  Blockly.Python.definitions_['import_linefinder'] = 'from makerbit_motion import motion';
+  // TODO: Assemble Python into code variable.
+  var code = "motion.get_accel('" + accel + "')";
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Blocks["makerbit_input_mpu_get_gyro"] = {
+  init: function () {
+    this.jsonInit({
+      colour: ColorBlock,
+      tooltip: "",
+      message0: "%2 đọc cảm biến gyroscope %1",
+      args0: [
+        {
+          type: "field_dropdown",
+          name: "gyro",
+          options: [
+            ["roll", "roll"],
+            ["pitch", "pitch"],
+            ["yaw", "yaw"],
+          ]
+        },
+        {
+          "type": "field_image",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/xyz-axis.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*",
+          "flipRtl": false
+        }
+      ],
+      output: "Number",
+      helpUrl: ""
+    });
+  },
+};
+
+Blockly.Python["makerbit_input_mpu_get_gyro"] = function (block) {
+  var gyro = block.getFieldValue("gyro");
+  Blockly.Python.definitions_['import_linefinder'] = 'from makerbit_motion import motion';
+  // TODO: Assemble Python into code variable.
+  var code = "motion.get_gyro_"+ gyro +"()";
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Blocks["makerbit_input_mpu_is_shake"] = {
+  init: function () {
+    this.jsonInit({
+      colour: ColorBlock,
+      tooltip: "",
+      message0: "%1 Makerbit Hub bị lắc",
+      args0: [
+        {
+          "type": "field_image",
+          "src": "https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_makerbit/images/xyz-axis.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*",
+          "flipRtl": false
+        }
+      ],
+      output: "Boolean",
+      helpUrl: ""
+    });
+  },
+};
+
+Blockly.Python["makerbit_input_mpu_is_shake"] = function (block) {
+  var gyro = block.getFieldValue("gyro");
+  Blockly.Python.definitions_['import_linefinder'] = 'from makerbit_motion import motion';
+  // TODO: Assemble Python into code variable.
+  var code = "motion.is_shaked()";
   return [code, Blockly.Python.ORDER_NONE];
 };
