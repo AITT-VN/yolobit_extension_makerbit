@@ -175,37 +175,41 @@ class DCMotors:
         self.speed(1, 0)
         self.speed(2, 0)
         self.speed(3, 0)
-        
-    def stepper(self, index, sense_of_rotation):  # index:1~2,sense_of_rotation:0~1
-      if index == 0:
-          if sense_of_rotation == 0:
-              self.pca9685.pwm(_DC_MOTORS[0][0], 2047, 4095)
-              self.pca9685.pwm(_DC_MOTORS[0][1], 1, 2047)
-              self.pca9685.pwm(_DC_MOTORS[1][0], 1023, 3071)
-              self.pca9685.pwm(_DC_MOTORS[1][1], 3071, 1023)
-          elif sense_of_rotation == 1:
-              self.pca9685.pwm(_DC_MOTORS[1][1], 2047, 4095)
-              self.pca9685.pwm(_DC_MOTORS[1][0], 1, 2047)
-              self.pca9685.pwm(_DC_MOTORS[0][1], 1023, 3071)
-              self.pca9685.pwm(_DC_MOTORS[0][0], 3071, 1023)
-      elif index == 1:
-          if sense_of_rotation == 0:
-              self.pca9685.pwm(_DC_MOTORS[2][0], 2047, 4095)
-              self.pca9685.pwm(_DC_MOTORS[2][1], 1, 2047)
-              self.pca9685.pwm(_DC_MOTORS[3][0], 1023, 3071)
-              self.pca9685.pwm(_DC_MOTORS[3][1], 3071, 1023)
-          elif sense_of_rotation == 1:
-              self.pca9685.pwm(_DC_MOTORS[3][1], 2047, 4095)
-              self.pca9685.pwm(_DC_MOTORS[3][0], 1, 2047)
-              self.pca9685.pwm(_DC_MOTORS[2][1], 1023, 3071)
-              self.pca9685.pwm(_DC_MOTORS[2][0], 3071, 1023)
 
-    def stepper_degree(self, index, degree):  # index:0-1,degree:-360 ~ 360
-        self.stepper(index, degree > 0)
-        degree = abs(degree)
-        time.sleep_ms(int(500 * degree / 360))
-        self.stop()
+    # Stepper Function
+    def _pin(self, pin, value):
+        if value == 1:
+            self.pca9685.pwm(pin, 4096, 0)
+        else:
+            self.pca9685.pwm(pin, 0, 0)    
+    
+    def setStepper(self,in1, in2, in3, in4):
+        self._pin(_DC_MOTORS[0][0], in1)
+        self._pin(_DC_MOTORS[0][1], in2)
+        self._pin(_DC_MOTORS[1][0], in3)
+        self._pin(_DC_MOTORS[1][1], in4)
+    
+    def unclockwise(self,step, delay=10):
+        for y in range(step):
+            self.setStepper(1, 0, 1, 0)
+            time.sleep_ms(delay)
+            self.setStepper(0, 1, 1, 0)
+            time.sleep_ms(delay)
+            self.setStepper(0, 1, 0, 1)
+            time.sleep_ms(delay)
+            self.setStepper(1, 0, 0, 1)
+            time.sleep_ms(delay)
 
+    def clockwise(self,step, delay=10):
+        for y in range(step):
+            self.setStepper(1, 0, 0, 1)
+            time.sleep_ms(delay)
+            self.setStepper(0, 1, 0, 1)
+            time.sleep_ms(delay)
+            self.setStepper(0, 1, 1, 0)
+            time.sleep_ms(delay)
+            self.setStepper(1, 0, 1, 0)
+            time.sleep_ms(delay)
 
 class Servos:
   def __init__(self, pca9685_obj, freq=50, min_us=400, max_us=2400, default_degrees=180):
