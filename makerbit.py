@@ -1,6 +1,10 @@
 import machine, math, pca9685, time
 from machine import Pin
+from yolobit import *
 from makerbit_ir_receiver import *
+
+ir_rx = IR_RX(Pin(15, Pin.IN))
+ir_rx.start()
 
 _DC_MOTORS = ((11, 10), (8, 9), (12, 13), (15, 14))
 

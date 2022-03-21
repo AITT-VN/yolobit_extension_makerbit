@@ -203,5 +203,3 @@ class IR_RX():
         self._pin.irq(handler = None)
         if self._tim:
             self._tim.deinit()
-
-ir_rx = IR_RX(Pin(15, Pin.IN))
